@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adv. Bhanu Prasad - Legal Counsel</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles for Professional Look (Original Colors) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1a2c; /* Deep Navy Blue */
+            overflow-x: hidden;
+            color: #e5e5e5; /* Light Gray */
+            position: relative; /* Base for fixed canvas background */
+        }
+
+        /* --- PRELOADER STYLE --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1a2c; /* Deep Navy for dramatic fade */
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .preloader-text {
+            font-size: 3rem; /* Increased size for attitude and power */
+            color: #ffd700; /* Gold */
+            text-shadow: 0 0 10px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse {
+            from { opacity: 0.5; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* --- FUTURISTIC CANVAS BACKGROUND --- */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Below body and content */
+            opacity: 0.15; /* Subtle visibility */
+        }
+
+        /* --- CUSTOM CURSOR STYLE --- */
+        #custom-cursor {
+            position: fixed;
+            width: 32px;
+            height: 32px;
+            border: 2px solid #ffd700; /* Gold border */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: exclusion;
+        }
+        .hovered-element {
+            width: 60px !important;
+            height: 60px !important;
+            background-color: rgba(255, 215, 0, 0.2) !important; /* Gold semi-transparent fill */
+        }
+
+        /* --- SCROLL ANIMATION STYLES --- */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1); 
+            will-change: transform, opacity;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO TEXT DECODE EFFECT --- */
+        .glitch-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px); 
+            animation: text-decode 0.8s forwards; 
+            color: #e5e7eb; 
+        }
+        .glitch-text .gold-text span {
+            color: #ffd700; /* Gold */
+        }
+        @keyframes text-decode {
+            0% { 
+                opacity: 0.1; 
+                transform: translateY(10px); 
+                filter: blur(8px) hue-rotate(45deg);
+                color: #ff8c00;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0) hue-rotate(0deg); 
+            }
+        }
+
+        /* --- EXPERTISE CARD 3D TILT STYLE --- */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s; 
+            will-change: transform;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, #0d1a2c, #030712); /* Navy to very dark */
+        }
+        .tilt-card:hover {
+             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2); /* Gold glow on hover */
+        }
+        
+        /* === GOLD BUTTON ANIMATION (Primary CTA) === */
+        @keyframes glow-pulse {
+            0% { box-shadow: 0 0 5px #ffd700, 0 0 10px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 20px #ffd700, 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 5px #ffd700, 0 0 10px rgba(255, 215, 0, 0.5); }
+        }
+        
+        .creative-gold-button {
+            color: #ffd700; /* Gold text */
+            border-color: #ffd700; /* Gold border */
+            background-color: rgba(255, 215, 0, 0.05); /* Very subtle gold fill */
+            transition: all 0.3s ease-in-out;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); 
+            will-change: transform, box-shadow;
+        }
+        .creative-gold-button:hover {
+            color: #0d1a2c; /* Deep navy text on hover */
+            text-shadow: none; 
+            background-color: #ffd700; /* Solid gold fill on hover */
+            animation: glow-pulse 1.5s infinite; 
+            transform: scale(1.02); 
+        }
+        
+        /* Secondary Button (Direction to Office) */
+        .creative-white-button {
+            color: #e5e5e5; /* Light gray text */
+            border-color: #94a3b8; /* Slate gray border */
+            background-color: transparent;
+            box-shadow: 0 0 5px rgba(148, 163, 184, 0.3);
+            transition: all 0.3s ease-in-out;
+            border: 2px solid #94a3b8;
+        }
+        .creative-white-button:hover {
+            color: #0d1a2c; /* Deep navy text */
+            text-shadow: none;
+            background-color: #e5e5e5; /* Solid white fill */
+            animation: none; 
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(229, 231, 235, 0.7);
+        }
+
+        /* --- WHATSAPP FORM SUBMIT BUTTON (NEW GREEN GLOW) --- */
+        @keyframes whatsapp-glow-pulse {
+            0% { box-shadow: 0 0 5px #25D366, 0 0 10px rgba(37, 211, 102, 0.5); }
+            50% { box-shadow: 0 0 20px #25D366, 0 0 40px rgba(37, 211, 102, 0.8), 0 0 60px rgba(37, 211, 102, 0.4); }
+            100% { box-shadow: 0 0 5px #25D366, 0 0 10px rgba(37, 211, 102, 0.5); }
+        }
+        .creative-whatsapp-button {
+            color: #25D366; /* Green text */
+            border-color: #25D366; /* Green border */
+            background-color: rgba(37, 211, 102, 0.05); /* Very subtle green fill */
+            transition: all 0.3s ease-in-out;
+            border: 2px solid #25D366;
+            box-shadow: 0 0 5px rgba(37, 211, 102, 0.5); 
+            will-change: transform, box-shadow;
+        }
+        .creative-whatsapp-button:hover {
+            color: #0d1a2c; /* Deep navy text on hover */
+            text-shadow: none; 
+            background-color: #25D366; /* Solid green fill on hover */
+            animation: whatsapp-glow-pulse 1.5s infinite; 
+            transform: scale(1.02); 
+        }
+
+        /* Holographic Header Effect */
+        #main-header {
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2); /* Gold accent */
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1); /* Subtle gold glow */
+            background-color: rgba(13, 26, 44, 0.9); /* Deep Navy with transparency */
+            backdrop-filter: blur(8px); /* Slightly more blur */
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* --- NAVIGATION LINK HOVER EFFECT --- */
+        .nav-link-hover-glow {
+            transition: all 0.3s ease;
+        }
+        .nav-link-hover-glow:hover {
+            color: #ffd700 !important; /* Gold text on hover */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* --- Glassmorphism / Aero Panel Effect --- */
+        .glass-panel {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(13, 26, 44, 0.4); /* Deep Navy with high transparency */
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Gold accent border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Text Scanner Effect (Flicker) for Headings --- */
+        @keyframes text-scanner {
+            0% { text-shadow: 0 0 1px #ffd700, 0 0 2px rgba(255, 140, 0, 0.5); } /* Gold and Orange flicker */
+            50% { text-shadow: 0 0 3px #ffd700, 0 0 8px rgba(255, 215, 0, 0.8), 2px 0 0 rgba(255, 140, 0, 0.7); }
+            100% { text-shadow: 0 0 1px #ffd700, 0 0 2px rgba(255, 140, 0, 0.5); }
+        }
+        .text-scanner {
+            animation: text-scanner 4s infinite alternate;
+            will-change: text-shadow;
+        }
+
+        /* === DYNAMIC GRADIENT TEXT FILL === */
+        @keyframes text-background-pan {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .dynamic-text-fill {
+            display: inline-block;
+            font-weight: 800;
+            /* Pulsating gradient background (Gold, Orange, Deep Gold) */
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #b8860b, #ffd700, #ff8c00);
+            background-size: 400% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; 
+            animation: text-background-pan 12s linear infinite;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); 
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        @keyframes whatsapp-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .pulse-whatsapp {
+            animation: whatsapp-pulse 2s infinite;
+        }
+        .whatsapp-button-fixed:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
+            animation: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Preloader Screen -->
+    <div id="preloader">
+        <div class="preloader-text font-extrabold uppercase tracking-widest">
+            <!-- UPDATED TEXT for powerful attitude -->
+            _ACCESSING_JUDGMENT_
+        </div>
+    </div>
+
+    <!-- Dynamic Background Canvas --><canvas id="background-canvas"></canvas>
+
+    <!-- Custom Animated Cursor (Hidden on Mobile) --><div id="custom-cursor" class="hidden md:block"></div>
+    
+    <!-- Floating WhatsApp Button --><a href="https://wa.me/919553367914" target="_blank" aria-label="Connect on WhatsApp" class="whatsapp-button-fixed fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 pulse-whatsapp" data-hover-cursor>
+        <!-- WhatsApp Icon SVG --><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
+        </svg>
+    </a>
+
+    <!-- Header / Navigation --><header id="main-header" class="p-4 md:p-8 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center max-w-7xl">
+            <h1 class="text-2xl font-extrabold text-yellow-400 tracking-wider transition duration-300 hover:text-yellow-300" data-hover-cursor>
+                Adv. Bhanu Prasad
+            </h1>
+            <nav class="space-x-4 hidden md:block">
+                <!-- Applied new nav-link-hover-glow class -->
+                <a href="#about" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>About</a>
+                <a href="#expertise" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Expertise</a>
+                <a href="#location-contact" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Location & Contact</a>
+            </nav>
+            <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden text-2xl text-white focus:outline-none" data-hover-cursor>
+                <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay --><div id="mobile-menu-overlay" class="fixed inset-0 bg-navy-950/95 z-50 transform -translate-y-full transition-transform duration-500 ease-in-out md:hidden">
+        <div class="flex justify-end p-6">
+            <button id="mobile-menu-close" class="text-3xl text-white focus:outline-none" data-hover-cursor>
+                 <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center justify-center space-y-8 h-4/5 text-2xl font-bold">
+            <!-- Applied new nav-link-hover-glow class -->
+            <a href="#about" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>About</a>
+            <a href="#expertise" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Expertise</a>
+            <a href="#location-contact" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Location & Contact</a>
+            <a href="https://wa.me/919553367914" target="_blank" class="mt-10 px-8 py-3 text-lg font-bold uppercase tracking-wider rounded-lg transition-all duration-300 mobile-menu-link creative-gold-button" data-hover-cursor>
+                Connect on WhatsApp
+            </a>
+        </nav>
+    </div>
+
+    <main class="py-12 md:py-20">
+
+        <!-- 1. Hero Section - Dynamic, Mouse-Controlled Parallax --><section id="hero-section" class="container mx-auto px-4 py-24 md:py-36 text-center max-w-7xl relative overflow-hidden flex items-center justify-center min-h-screen">
+            <div class="max-w-4xl scroll-reveal" data-scroll-delay="0.1">
+                 <!-- Wrapper for Parallax Effect (FIXED: Parallax applied here in JS) --><div id="hero-parallax-wrapper" data-parallax-strength="0.05">
+                    <p class="glitch-text text-lg md:text-xl text-yellow-400 font-semibold mb-3 tracking-widest uppercase text-scanner">
+                        <!-- Text injected by JS -->
+                    </p>
+                    <h2 id="hero-title" class="glitch-text text-5xl md:text-8xl font-black text-white leading-tight mb-6">
+                        <!-- Text injected by JS --></h2>
+                </div>
+                <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto scroll-reveal" data-scroll-delay="0.5">
+                    Commitment to Justice. Rigor in Representation.
+                </p>
+                <a href="#location-contact" class="creative-gold-button font-bold py-3 px-8 rounded-lg shadow-lg uppercase tracking-wider custom-button-pulse scroll-reveal" data-scroll-delay="0.7" data-hover-cursor>
+                    Schedule Consultation
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. About Section - Professional Bio and Photo --><section id="about" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
+            <div class="glass-panel p-8 md:p-12 rounded-xl scroll-reveal" data-scroll-delay="0.1">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                    
+                    <!-- Column 1: Lawyer Photo -->
+                    <div class="md:col-span-1 flex justify-center order-1 scroll-reveal" data-scroll-delay="0.2">
+                        <img
+                            src="https://placehold.co/400x400/0d1a2c/ffd700?text=Adv.+Bhanu+Prasad\n(Official+Photo)" 
+                            alt="Adv. Bhanu Prasad Official Portrait" 
+                            class="w-64 h-64 md:w-full md:max-w-xs rounded-full object-cover border-4 border-yellow-400 shadow-xl transition duration-500 hover:shadow-[0_0_30px_rgba(255,215,0,0.8)]"
+                        />
+                    </div>
+
+                    <!-- Column 2: Legacy of Law Text -->
+                    <div class="md:col-span-1 order-2 scroll-reveal" data-scroll-delay="0.4">
+                        <h3 class="text-3xl font-extrabold text-yellow-400 mb-4 border-b-2 border-yellow-500 pb-2 text-scanner">
+                            A Legacy of Law
+                        </h3>
+                        <!-- FIX: Bold text formatting corrected -->
+                        <p class="text-gray-300 leading-relaxed text-lg mb-4">
+                            Adv. Bhanu Prasad is deeply rooted in the legal profession, bringing a heritage of commitment and rigor to his practice, having grown up as the <strong class="text-yellow-300">son of a leading advocate</strong>.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed text-md">
+                            This early exposure instilled a profound respect for the rule of law and the meticulous preparation required for successful advocacy.
+                        </p>
+                    </div>
+
+                    <!-- Column 3: Educational Foundation List -->
+                    <div class="md:col-span-1 order-3 scroll-reveal" data-scroll-delay="0.6">
+                        <h4 class="text-2xl font-bold text-white mb-4">Educational Foundation</h4>
+                        <ul class="space-y-4 text-gray-300">
+                            <!-- Education Entry 1 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
+                                <span class="font-semibold text-yellow-400">Law Degree:</span> Graduated from the reputed <strong class="text-yellow-300">Padala Ram Reddy Law College</strong>.
+                            </li>
+                            <!-- Education Entry 2 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
+                                <span class="font-semibold text-yellow-400">Intermediate Studies:</span> Completed rigorous intermediate studies at <strong class="text-yellow-300">NARAYANA</strong>.
+                            </li>
+                            <!-- Education Entry 3 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
+                                <span class="font-semibold text-yellow-400">Foundational Schooling:</span> Completed 10th standard at <strong class="text-yellow-300">ST'ANNS HIGH SCHOOL</strong>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- 3. Expertise/Philosophy Section - Animated Focus --><section id="expertise" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl text-center">
+            <div class="scroll-reveal" data-scroll-delay="0.1">
+                <h3 class="text-3xl md:text-5xl font-extrabold text-white mb-4 text-scanner">
+                    Our <span class="dynamic-text-fill">Philosophy</span>
+                </h3>
+                <p class="text-xl text-gray-400 mb-12">
+                    Clarity, Integrity, and Unwavering Dedication to Client Success.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1: Detailed Analysis (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.2" data-tilt-max="10" data-hover-cursor>
+                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c.048 3.013 1.059 5.867 2.872 8.256A15.932 15.932 0 0012 22.091h.001c.361-.31.696-.642 1.009-.988a14.735 14.735 0 012.783-2.617 12.002 12.002 0 005.152-7.514A12.001 12.001 0 0021.666 5.984z"></path></svg>
+                    <h4 class="text-xl font-bold text-white mb-2">Detailed Analysis</h4>
+                    <p class="text-gray-400 text-sm">Every case is approached with forensic detail, ensuring no evidence or legal precedent is overlooked.</p>
+                </div>
+                
+                <!-- Feature 2: Strategic Advocacy (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.4" data-tilt-max="10" data-hover-cursor>
+                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 17h6a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h3"></path></svg>
+                    <h4 class="text-xl font-bold text-white mb-2">Strategic Advocacy</h4>
+                    <p class="text-gray-400 text-sm">Known for powerful and persuasive arguments, both in negotiations and before the bench.</p>
+                </div>
+                
+                <!-- Feature 3: Ethical Counsel (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.6" data-tilt-max="10" data-hover-cursor>
+                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.463 9.208 5 7.5 5A4.5 4.5 0 003 9.5a4.5 4.5 0 004.5 4.5c1.672 0 3.19-.487 4.5-1.334M12 6.253c1.168.868 2.792 1.334 4.5 1.334A4.5 4.5 0 0021 9.5a4.5 4.5 0 00-4.5-4.5c-1.672 0-3.19.487-4.5 1.334m0 13v-13"></path></svg>
+                    <h4 class="text-xl font-bold text-white mb-2">Ethical Counsel</h4>
+                    <p class="text-gray-400 text-sm">Maintaining the highest standards of professional ethics and clear, transparent communication.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Location & Contact Section --><section id="location-contact" class="container mx-auto px-4 py-16 md:py-24 max-w-2xl">
+            <div class="glass-panel p-8 md:p-10 rounded-xl text-center scroll-reveal" data-scroll-delay="0.1">
+                <h3 class="text-3xl font-extrabold text-yellow-400 mb-4 text-scanner">
+                    Initiate <span class="dynamic-text-fill">Discussion</span>
+                </h3>
+                <p class="text-gray-400 mb-8">
+                    To discuss your legal matter with Adv. Bhanu Prasad, please fill out the form or connect via WhatsApp.
+                </p>
+                
+                <form class="space-y-4 text-left">
+                    <div class="scroll-reveal" data-scroll-delay="0.2">
+                        <label for="name" class="block text-sm font-medium text-gray-300">Your Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-white p-3 focus:ring-yellow-500 focus:border-yellow-500 transition duration-300" placeholder="John Doe" data-hover-cursor>
+                    </div>
+                    
+                    <div class="scroll-reveal" data-scroll-delay="0.3">
+                        <label for="email" class="block text-sm font-medium text-gray-300">Your Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-white p-3 focus:ring-yellow-500 focus:border-yellow-500 transition duration-300" placeholder="name@example.com" data-hover-cursor>
+                    </div>
+                    
+                    <div class="scroll-reveal" data-scroll-delay="0.4">
+                        <label for="message" class="block text-sm font-medium text-gray-300">Your Query</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-white p-3 focus:ring-yellow-500 focus:border-yellow-500 transition duration-300" placeholder="Briefly describe your legal need..." data-hover-cursor></textarea>
+                    </div>
+
+                    <div class="pt-4 scroll-reveal" data-scroll-delay="0.5">
+                        <!-- WhatsApp Submission Button -->
+                        <button type="button" id="whatsapp-submit-btn" class="w-full creative-whatsapp-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] flex items-center justify-center space-x-3" data-hover-cursor>
+                            <!-- WhatsApp Icon SVG -->
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
+                            </svg>
+                            <span>Connect and Send via WhatsApp</span>
+                        </button>
+                        <p id="status-message" class="mt-4 text-center text-sm text-yellow-400 opacity-0 transition duration-500"></p>
+                    </div>
+
+                    <!-- Direction to Office Button (Updated Link - Placeholder for actual Maps link) --><div class="pt-6 scroll-reveal" data-scroll-delay="0.6">
+                        <a href="https://maps.app.goo.gl/YourActualOfficeLocation" target="_blank" class="w-full creative-white-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] inline-flex items-center justify-center space-x-2" data-hover-cursor>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span>Directions to Office</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="glass-panel mt-12 p-6 text-center text-gray-500 border-t border-gray-800">
+        <p>&copy; <span id="current-year"></span> Adv. Bhanu Prasad. All Rights Reserved. | Crafted for Professional Advocacy.</p>
+    </footer>
+
+    <!-- JavaScript for Animations and Cursor --><script>
+        // --- Custom Cursor Logic (Desktop Only) ---
+        function setupCustomCursor() {
+            const cursor = document.getElementById('custom-cursor');
+            if (!cursor || window.innerWidth < 768) return;
+
+            // Follow the mouse
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            });
+
+            // Handle hover states for interactive elements (links, buttons, inputs)
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, [data-hover-cursor]');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovered-element'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered-element'));
+            });
+        }
+
+        // Helper function to create the animated spans for a text segment
+        function createAnimatedSpans(text, delayStart, wrapperElement) {
+            let delay = delayStart;
+            text.split('').forEach((char) => {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char === ' ' ? '\u00A0' : char; // Handle non-breaking space replacement
+                charSpan.style.animationDelay = `${0.03 * delay}s`;
+                wrapperElement.appendChild(charSpan);
+                delay++;
+            });
+            return delay;
+        }
+
+        // --- Hero Text Reveal Animation (REVISED for Data Decode Effect) ---
+        function runHeroTextAnimation() {
+            const subtitleElement = document.querySelector('#hero-section p.glitch-text');
+            const titleElement = document.getElementById('hero-title');
+            if (!subtitleElement || !titleElement) return;
+
+            // Subtitle segments
+            const subtitleSegments = [
+                { text: "ADVOCATE AT LAW", classes: "" }
+            ];
+
+            subtitleElement.innerHTML = '';
+            let subtitleDelayCounter = 0;
+            subtitleSegments.forEach((segment) => {
+                const wrapper = document.createElement('span');
+                wrapper.className = segment.classes;
+                subtitleDelayCounter = createAnimatedSpans(segment.text, subtitleDelayCounter, wrapper);
+                subtitleElement.appendChild(wrapper);
+            });
+
+            // Title segments
+            const titleSegments = [
+                { text: "BHANU PRASAD", classes: "gold-text" }
+            ];
+
+            titleElement.innerHTML = '';
+            let titleDelayCounter = 0;
+            titleSegments.forEach((segment) => {
+                const wrapper = document.createElement('span');
+                wrapper.className = segment.classes;
+                titleDelayCounter = createAnimatedSpans(segment.text, titleDelayCounter, wrapper);
+                titleElement.appendChild(wrapper);
+            });
+        }
+        
+        // --- Scroll Reveal Animation using Intersection Observer ---
+        function setupScrollReveal() {
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseFloat(entry.target.getAttribute('data-scroll-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, delay * 1000); 
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        // --- Parallax Mouse Effect for Hero (Desktop Only) ---
+        function setupParallaxHero() {
+            // FIX: Targetting the wrapper element for stability with JS text animation
+            const wrapperTarget = document.getElementById('hero-parallax-wrapper');
+            if (!wrapperTarget || window.innerWidth < 768) return; 
+
+            const strength = parseFloat(wrapperTarget.getAttribute('data-parallax-strength')) || 0.05;
+
+            document.addEventListener('mousemove', (e) => {
+                // Calculate position relative to the center of the viewport
+                const x = (e.clientX - window.innerWidth / 2);
+                const y = (e.clientY - window.innerHeight / 2);
+
+                // Apply parallax to the main wrapper
+                const moveX = -x * strength;
+                const moveY = -y * strength;
+                
+                wrapperTarget.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+                wrapperTarget.style.transition = 'transform 0.1s ease-out';
+            });
+        }
+
+        // --- 3D Tilt Effect for Process Cards ---
+        function setupTiltEffect() {
+            const cards = document.querySelectorAll('.tilt-card');
+            
+            cards.forEach(card => {
+                const maxTilt = parseFloat(card.getAttribute('data-tilt-max')) || 10;
+                
+                // Function to handle tilt calculation
+                const handleTilt = (x, y, rect) => {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Calculate rotation angles
+                    const rotateX = ((y - centerY) / centerY) * maxTilt * 0.5; // Reduced tilt impact
+                    const rotateY = ((x - centerX) / centerX) * -maxTilt * 0.5; // Negative for correct direction
+
+                    // Apply the 3D transform
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                };
+
+                // Mouse Events (Desktop)
+                card.addEventListener('mousemove', (e) => {
+                    if (window.innerWidth < 768) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    handleTilt(x, y, rect);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (window.innerWidth < 768) return;
+                    // Reset on mouse leave with transition
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+                });
+                
+                // Touch Events (Mobile - simple tilt on press)
+                card.addEventListener('touchstart', (e) => {
+                    // Use a fixed tilt angle for touch press/hold
+                    const rotateX = 5;
+                    const rotateY = -5; 
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                }, { passive: true }); 
+
+                card.addEventListener('touchend', () => {
+                    // Reset on touch release
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+                });
+            });
+        }
+        
+        // --- Mobile Menu Logic ---
+        function setupMobileMenu() {
+            const openBtn = document.getElementById('mobile-menu-button');
+            const closeBtn = document.getElementById('mobile-menu-close');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const links = document.querySelectorAll('.mobile-menu-link');
+
+            function toggleMenu() {
+                if (overlay.classList.contains('-translate-y-full')) {
+                    overlay.classList.remove('-translate-y-full');
+                    overlay.classList.add('translate-y-0');
+                    document.body.style.overflowY = 'hidden'; // Disable background scroll
+                } else {
+                    overlay.classList.remove('translate-y-0');
+                    overlay.classList.add('-translate-y-full');
+                    document.body.style.overflowY = 'auto'; // Enable background scroll
+                }
+            }
+
+            openBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            
+            links.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        }
+
+        // --- Canvas Background Animation ---
+        function setupCanvasBackground() {
+            const canvas = document.getElementById('background-canvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const lines = [];
+            const maxLines = 80; 
+            const goldColor = 'rgba(255, 215, 0, 0.1)'; // Subtle gold lines
+
+            for (let i = 0; i < maxLines; i++) {
+                lines.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    length: 10 + Math.random() * 200,
+                    speed: 0.1 + Math.random() * 0.6, 
+                    direction: Math.random() * 2 * Math.PI, 
+                    width: 1 + Math.random() * 2,
+                });
+            }
+
+            function animate() {
+                ctx.fillStyle = 'rgba(13, 26, 44, 0.05)'; // Deep Navy with subtle fade
+                ctx.fillRect(0, 0, width, height);
+                
+                ctx.strokeStyle = goldColor;
+
+                lines.forEach(line => {
+                    line.x += Math.cos(line.direction) * line.speed;
+                    line.y += Math.sin(line.direction) * line.speed;
+
+                    const endX = line.x + Math.cos(line.direction) * line.length;
+                    const endY = line.y + Math.sin(line.direction) * line.length;
+
+                    ctx.beginPath();
+                    ctx.moveTo(line.x, line.y);
+                    ctx.lineTo(endX, endY);
+                    ctx.lineWidth = line.width;
+                    ctx.stroke();
+
+                    // Boundary check: Reposition line if it goes off screen
+                    if (line.x < -line.length || line.x > width + line.length || 
+                        line.y < -line.length || line.y > height + line.length) {
+                        
+                        // Re-spawn the line from a random edge
+                        if (Math.random() < 0.5) {
+                            line.x = line.x < 0 ? width + line.length : -line.length;
+                            line.y = Math.random() * height;
+                        } else {
+                            line.x = Math.random() * width;
+                            line.y = line.y < 0 ? height + line.length : -line.length;
+                        }
+                    }
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // --- Preloader Logic (Smooth Load) ---
+        function runPreloader() {
+            const preloader = document.getElementById('preloader');
+            if (!preloader) {
+                // Fail-safe: If preloader element is missing, run post-load effects immediately.
+                setupPostLoadEffects(); 
+                return;
+            }
+            // Temporarily disable scrolling during preload
+            document.body.style.overflowY = 'hidden'; 
+
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.style.overflowY = 'auto'; // Re-enable scrolling
+                    setupPostLoadEffects(); 
+                }, 1000); // 1 second matches the CSS transition duration
+            }, 1500); // 1.5 seconds delay
+        }
+
+        // --- Functions to run AFTER preloader completion (Visual Effects) ---
+        function setupPostLoadEffects() {
+            setupScrollReveal(); 
+            runHeroTextAnimation(); 
+            setupParallaxHero(); 
+            setupTiltEffect(); 
+        }
+
+        // --- Contact Form Submission (New WhatsApp Logic) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const whatsappSubmitBtn = document.getElementById('whatsapp-submit-btn');
+            const statusMessage = document.getElementById('status-message');
+            // NOTE: Advocate's actual 10-digit number including country code (e.g., 919553367914 for India)
+            const advocateNumber = "919553367914"; 
+
+            whatsappSubmitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    statusMessage.textContent = "Error: Please fill in all fields before connecting.";
+                    statusMessage.classList.remove('opacity-0');
+                    setTimeout(() => {
+                        statusMessage.classList.add('opacity-0');
+                    }, 3000);
+                    return;
+                }
+
+                // Construct the pre-filled WhatsApp message
+                const whatsappMessage = `*New Legal Query from Website*
+Name: ${name}
+Email: ${email}
+Query: ${message}`;
+                
+                const url = `https://wa.me/${advocateNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Open WhatsApp in a new tab
+                window.open(url, '_blank');
+
+                statusMessage.textContent = `Preparing WhatsApp chat for ${name}... (Opening in new tab)`;
+                statusMessage.classList.remove('opacity-0');
+                setTimeout(() => {
+                    // Reset status message after a short delay
+                    statusMessage.classList.add('opacity-0');
+                }, 4000);
+
+                // Clear form after successful attempt
+                document.querySelector('form').reset();
+            });
+
+
+            // Initialize custom cursor only on larger screens
+            setupCustomCursor();
+
+            // Initialize the canvas background immediately
+            setupCanvasBackground(); 
+            // Run preloader, which then calls other setupPostLoadEffects
+            runPreloader();
+            setupMobileMenu();
+        });
+    </script>
+</body>
+</html>
