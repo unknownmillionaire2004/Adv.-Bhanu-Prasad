@@ -330,7 +330,8 @@
         <!-- 1. Hero Section - Dynamic, Mouse-Controlled Parallax -->
         <!-- FIX: Added h-screen to container and modified padding to ensure vertical centering -->
         <section id="hero-section" class="container mx-auto px-4 h-screen max-w-7xl relative overflow-hidden flex items-center justify-center text-center">
-            <div class="max-w-4xl scroll-reveal" data-scroll-delay="0.1">
+            <!-- CHANGE: Applied -mt-16 to pull content up dramatically and reduce space below the fixed header -->
+            <div class="max-w-4xl scroll-reveal -mt-16" data-scroll-delay="0.1">
                  <!-- Wrapper for Parallax Effect (FIXED: Parallax applied here in JS) --><div id="hero-parallax-wrapper" data-parallax-strength="0.05">
                     <p class="glitch-text text-lg md:text-xl text-yellow-400 font-semibold mb-3 tracking-widest uppercase text-scanner">
                         <!-- Text injected by JS -->
@@ -355,7 +356,7 @@
                     <!-- Column 1: Lawyer Photo -->
                     <div class="md:col-span-1 flex justify-center order-1 scroll-reveal" data-scroll-delay="0.2">
                         <img
-                            src="https://placehold.co/400x400/0d1a2c/ffd700?text=Adv.+Bhanu+Prasad\n(Official+Photo)" 
+                            src="file.jpg" 
                             alt="Adv. Bhanu Prasad Official Portrait" 
                             class="w-64 h-64 md:w-full md:max-w-xs rounded-full object-cover border-4 border-yellow-400 shadow-xl transition duration-500 hover:shadow-[0_0_30px_rgba(255,215,0,0.8)]"
                         />
@@ -464,7 +465,7 @@
                     </div>
 
                     <!-- Direction to Office Button (Updated Link - Placeholder for actual Maps link) --><div class="pt-6 scroll-reveal" data-scroll-delay="0.6">
-                        <a href="https://maps.app.goo.gl/YourActualOfficeLocation" target="_blank" class="w-full creative-white-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] inline-flex items-center justify-center space-x-2" data-hover-cursor>
+                        <a href="https://maps.app.goo.gl/6uGeq3pyAiM6rSxy9" target="_blank" class="w-full creative-white-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] inline-flex items-center justify-center space-x-2" data-hover-cursor>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             <span>Directions to Office</span>
                         </a>
@@ -476,7 +477,7 @@
     </main>
 
     <!-- Footer --><footer class="glass-panel mt-12 p-6 text-center text-gray-500 border-t border-gray-800">
-        <p>&copy; <span id="current-year"></span> Adv. Bhanu Prasad. All Rights Reserved. | Crafted for Professional Advocacy.</p>
+        <p>&copy; <span id="current-year"></span> Adv. Bhanu Prasad. All Rights Reserved. | Crafted by ANURAG WEB BUILDERS</p>
     </footer>
 
     <!-- JavaScript for Animations and Cursor --><script>
