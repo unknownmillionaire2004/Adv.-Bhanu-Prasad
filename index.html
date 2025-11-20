@@ -289,6 +289,9 @@
             border-radius: 0.5rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            /* Set aspect ratio to 9:16 (portrait/tall) */
+            aspect-ratio: 9 / 16;
+            width: 100%;
             transition: transform 0.3s ease-in-out;
         }
         .gallery-item:hover {
@@ -419,7 +422,7 @@
                     <!-- Column 1: Lawyer Photo and Primary Contact -->
                     <div class="lg:col-span-1 flex flex-col items-center justify-center order-1 scroll-reveal" data-scroll-delay="0.2">
                         <img
-                            src="WhatsApp Image 2025-11-18 at 20.46.06.jpeg" 
+                            src="WhatsApp Image 2025-11-18 at 20.52.20.jpeg" 
                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/0d1a2c/ffd700?text=Adv.+J.+Bhanu+Prasad\n(Official+Photo)';"
                             alt="Adv. J. Bhanu Prasad Official Portrait" 
                             class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-yellow-400 shadow-xl transition duration-500 hover:shadow-[0_0_40px_rgba(255,215,0,0.9)] mb-6"
@@ -553,29 +556,30 @@
             </div>
 
             <!-- Grid for Photos (responsive 2-3 columns) -->
+            <!-- The aspect-ratio property in .gallery-item CSS ensures 9:16 -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 
                 <!-- Photo 1: Full Professional Attire (Used as primary on About page) -->
-                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.2">
-                    <img src="WhatsApp Image 2025-11-18 at 20.46.06.jpeg" alt="Advocate J. Bhanu Prasad" class="w-full h-full object-cover transform transition duration-500" />
+                <div class="gallery-item scroll-reveal" data-scroll-delay="0.2">
+                    <img src="WhatsApp Image 2025-11-18 at 20.52.20.jpeg" alt="Advocate J. Bhanu Prasad" class="w-full h-full object-cover transform transition duration-500" />
                     <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Official Portrait</span></div>
                 </div>
 
                 <!-- Photo 2: Handshake/Networking -->
-                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.3">
+                <div class="gallery-item scroll-reveal" data-scroll-delay="0.3">
                     <img src="WhatsApp Image 2025-11-18 at 20.47.07.jpeg" alt="Advocate with Colleague" class="w-full h-full object-cover transform transition duration-500" />
                     <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Networking</span></div>
                 </div>
 
                 <!-- Photo 3: Seated in Court/Office -->
-                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.4">
-                    <img src="WhatsApp Image 2025-11-18 at 20.44.12.jpeg" alt="Advocate Seated in Waiting Area" class="w-full h-full object-cover transform transition duration-500" />
+                <div class="gallery-item scroll-reveal" data-scroll-delay="0.4">
+                    <img src="WhatsApp Image 2025-11-18 at 20.46.06.jpeg" alt="Advocate Seated in Waiting Area" class="w-full h-full object-cover transform transition duration-500" />
                     <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">At the Court</span></div>
                 </div>
 
                 <!-- Photo 4: Namaste/Greeting -->
-                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.5">
-                    <img src="WhatsApp Image 2025-11-18 at 20.52.20.jpeg" alt="Advocate J. Bhanu Prasad Greeting" class="w-full h-full object-cover transform transition duration-500" />
+                <div class="gallery-item scroll-reveal" data-scroll-delay="0.5">
+                    <img src="WhatsApp Image 2025-11-18 at 20.44.12.jpeg" alt="Advocate J. Bhanu Prasad Greeting" class="w-full h-full object-cover transform transition duration-500" />
                     <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Greeting</span></div>
                 </div>
             </div>
