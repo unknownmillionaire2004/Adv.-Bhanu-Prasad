@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adv. Bhanu Prasad - Legal Counsel</title>
+    <title>Adv. J. Bhanu Prasad - Legal Counsel</title>
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Inter Font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -34,7 +34,6 @@
         .preloader-text {
             /* Adjusted for better mobile visibility/scaling */
             font-size: 3rem; 
-            /* Media Query for Mobile Optimization */
             /* Ensure the text doesn't overflow horizontally on small screens */
             max-width: 90vw;
             text-align: center;
@@ -119,7 +118,20 @@
                 filter: blur(0) hue-rotate(0deg); 
             }
         }
+        
+        /* === IMPROVEMENT: Floating effect for Hero text wrapper === */
+        @keyframes float {
+            0% { transform: translate3d(var(--move-x, 0), var(--move-y, 0), 0) translateY(0px); }
+            50% { transform: translate3d(var(--move-x, 0), var(--move-y, 0), 0) translateY(-4px); }
+            100% { transform: translate3d(var(--move-x, 0), var(--move-y, 0), 0) translateY(0px); }
+        }
 
+        #hero-parallax-wrapper {
+            will-change: transform;
+            /* Combine parallax transform (via JS) with subtle floating */
+            animation: float 4s ease-in-out infinite; 
+        }
+        
         /* --- EXPERTISE CARD 3D TILT STYLE --- */
         .tilt-card {
             transform-style: preserve-3d;
@@ -269,6 +281,53 @@
             box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
             animation: none;
         }
+
+        /* --- PHOTO GALLERY STYLES --- */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease-in-out;
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 215, 0, 0.2); /* Gold semi-transparent overlay */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            border-color: #ffd700; /* Gold border on hover */
+        }
+
+        /* === FIX: Ensure Hero Title is one line and clamps on mobile === */
+        #hero-title {
+            white-space: nowrap; /* Prevent line breaks */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Use ellipsis if needed (though font-size scaling is preferred) */
+        }
+        @media (max-width: 640px) {
+            /* Force smaller font to accommodate the full name on smaller screens */
+            #hero-title {
+                font-size: 3rem; 
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -276,7 +335,6 @@
     <!-- Preloader Screen -->
     <div id="preloader">
         <div class="preloader-text font-extrabold uppercase tracking-widest">
-            <!-- UPDATED TEXT for powerful attitude -->
             _ACCESSING_JUDGMENT_
         </div>
     </div>
@@ -287,20 +345,22 @@
     
     <!-- Floating WhatsApp Button --><a href="https://wa.me/919553367914" target="_blank" aria-label="Connect on WhatsApp" class="whatsapp-button-fixed fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition duration-300 transform hover:scale-110 pulse-whatsapp" data-hover-cursor>
         <!-- WhatsApp Icon SVG --><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
+            <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
         </svg>
     </a>
 
     <!-- Header / Navigation --><header id="main-header" class="p-4 md:p-8 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center max-w-7xl">
             <h1 class="text-2xl font-extrabold text-yellow-400 tracking-wider transition duration-300 hover:text-yellow-300" data-hover-cursor>
-                Adv. Bhanu Prasad
+                Adv. J. Bhanu Prasad
             </h1>
             <nav class="space-x-4 hidden md:block">
                 <!-- Applied new nav-link-hover-glow class -->
                 <a href="#about" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>About</a>
                 <a href="#expertise" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Expertise</a>
-                <a href="#location-contact" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Location & Contact</a>
+                <a href="#work-experience" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Experience</a>
+                <a href="#gallery" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Gallery</a>
+                <a href="#location-contact" class="text-gray-300 transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Contact</a>
             </nav>
             <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden text-2xl text-white focus:outline-none" data-hover-cursor>
                 <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -318,7 +378,9 @@
             <!-- Applied new nav-link-hover-glow class -->
             <a href="#about" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>About</a>
             <a href="#expertise" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Expertise</a>
-            <a href="#location-contact" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Location & Contact</a>
+            <a href="#work-experience" class="text-white transition duration-300 font-medium nav-link-hover-glow" data-hover-cursor>Experience</a>
+            <a href="#gallery" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Gallery</a>
+            <a href="#location-contact" class="text-white transition duration-300 mobile-menu-link nav-link-hover-glow" data-hover-cursor>Contact</a>
             <a href="https://wa.me/919553367914" target="_blank" class="mt-10 px-8 py-3 text-lg font-bold uppercase tracking-wider rounded-lg transition-all duration-300 mobile-menu-link creative-gold-button" data-hover-cursor>
                 Connect on WhatsApp
             </a>
@@ -328,11 +390,11 @@
     <main class="py-12 md:py-20">
 
         <!-- 1. Hero Section - Dynamic, Mouse-Controlled Parallax -->
-        <!-- FIX: Added h-screen to container and modified padding to ensure vertical centering -->
         <section id="hero-section" class="container mx-auto px-4 h-screen max-w-7xl relative overflow-hidden flex items-center justify-center text-center">
-            <!-- CHANGE: Applied -mt-16 to pull content up dramatically and reduce space below the fixed header -->
-            <div class="max-w-4xl scroll-reveal -mt-16" data-scroll-delay="0.1">
-                 <!-- Wrapper for Parallax Effect (FIXED: Parallax applied here in JS) --><div id="hero-parallax-wrapper" data-parallax-strength="0.05">
+            <!-- Centering is handled by parent flex container -->
+            <div class="max-w-4xl scroll-reveal" data-scroll-delay="0.1">
+                <!-- Wrapper for Parallax Effect -->
+                <div id="hero-parallax-wrapper" data-parallax-strength="0.05">
                     <p class="glitch-text text-lg md:text-xl text-yellow-400 font-semibold mb-3 tracking-widest uppercase text-scanner">
                         <!-- Text injected by JS -->
                     </p>
@@ -348,58 +410,57 @@
             </div>
         </section>
 
-        <!-- 2. About Section - Professional Bio and Photo --><section id="about" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
+        <!-- 2. About Section - Professional Bio and Photo -->
+        <section id="about" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
             <div class="glass-panel p-8 md:p-12 rounded-xl scroll-reveal" data-scroll-delay="0.1">
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
                     
-                    <!-- Column 1: Lawyer Photo -->
-                    <div class="md:col-span-1 flex justify-center order-1 scroll-reveal" data-scroll-delay="0.2">
+                    <!-- Column 1: Lawyer Photo and Primary Contact -->
+                    <div class="lg:col-span-1 flex flex-col items-center justify-center order-1 scroll-reveal" data-scroll-delay="0.2">
                         <img
-                            src="file.jpg" 
-                            alt="Adv. Bhanu Prasad Official Portrait" 
-                            class="w-64 h-64 md:w-full md:max-w-xs rounded-full object-cover border-4 border-yellow-400 shadow-xl transition duration-500 hover:shadow-[0_0_30px_rgba(255,215,0,0.8)]"
+                            src="WhatsApp Image 2025-11-18 at 20.46.06.jpeg" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/0d1a2c/ffd700?text=Adv.+J.+Bhanu+Prasad\n(Official+Photo)';"
+                            alt="Adv. J. Bhanu Prasad Official Portrait" 
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-yellow-400 shadow-xl transition duration-500 hover:shadow-[0_0_40px_rgba(255,215,0,0.9)] mb-6"
                         />
+                         <a href="https://wa.me/919553367914" target="_blank" class="creative-whatsapp-button font-bold py-2 px-6 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.05] flex items-center justify-center space-x-2 w-full max-w-xs" data-hover-cursor>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
+                        </svg>
+                        Connect Now
+                        </a>
                     </div>
 
-                    <!-- Column 2: Legacy of Law Text -->
-                    <div class="md:col-span-1 order-2 scroll-reveal" data-scroll-delay="0.4">
+                    <!-- Column 2: Profile Summary (NEW CONTENT) -->
+                    <div class="lg:col-span-2 order-2 scroll-reveal" data-scroll-delay="0.4">
                         <h3 class="text-3xl font-extrabold text-yellow-400 mb-4 border-b-2 border-yellow-500 pb-2 text-scanner">
-                            A Legacy of Law
+                            Professional Profile & Practice
                         </h3>
-                        <!-- FIX: Bold text formatting corrected -->
                         <p class="text-gray-300 leading-relaxed text-lg mb-4">
-                            Adv. Bhanu Prasad is deeply rooted in the legal profession, bringing a heritage of commitment and rigor to his practice, having grown up as the <strong class="text-yellow-300">son of a leading advocate</strong>.
+                            <strong class="text-yellow-300">Experienced and innovative lawyer with passion and dedication to justice.</strong> Highly organized, and skilled in public speaking. Bringing forth a proven track record of achieving favorable outcomes for clients. Adept in preparing for trials, reviewing documents, and effectively presenting cases in court. A strong leader who works well under pressure, and understands the complexities of the legal system.
                         </p>
-                        <p class="text-gray-400 leading-relaxed text-md">
-                            This early exposure instilled a profound respect for the rule of law and the meticulous preparation required for successful advocacy.
-                        </p>
-                    </div>
-
-                    <!-- Column 3: Educational Foundation List -->
-                    <div class="md:col-span-1 order-3 scroll-reveal" data-scroll-delay="0.6">
-                        <h4 class="text-2xl font-bold text-white mb-4">Educational Foundation</h4>
-                        <ul class="space-y-4 text-gray-300">
-                            <!-- Education Entry 1 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
-                                <span class="font-semibold text-yellow-400">Law Degree:</span> Graduated from the reputed <strong class="text-yellow-300">Padala Ram Reddy Law College</strong>.
-                            </li>
-                            <!-- Education Entry 2 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
-                                <span class="font-semibold text-yellow-400">Intermediate Studies:</span> Completed rigorous intermediate studies at <strong class="text-yellow-300">NARAYANA</strong>.
-                            </li>
-                            <!-- Education Entry 3 (FIX: Bold text formatting corrected) --><li class="p-3 bg-gray-800/50 rounded-lg shadow-inner transition duration-300 hover:bg-gray-700/50">
-                                <span class="font-semibold text-yellow-400">Foundational Schooling:</span> Completed 10th standard at <strong class="text-yellow-300">ST'ANNS HIGH SCHOOL</strong>.
-                            </li>
+                        <ul class="text-gray-400 space-y-2 list-disc list-inside text-md pl-4">
+                             <li>Currently serving as an <strong class="text-yellow-300">Executive Committee Member at Kukatpally Courts</strong>.</li>
+                             <li>Practising lawyer in <strong class="text-yellow-300">High Court of Telangana</strong> & Ranganreddy & Sangareddy District Courts.</li>
+                             <li><strong class="text-yellow-300">Registration No: AP/2304/2017</strong></li>
                         </ul>
+                        <div class="mt-6">
+                            <h4 class="text-xl font-bold text-white mb-2">Academic Foundation:</h4>
+                            <ul class="space-y-2 text-gray-300 pl-4">
+                                 <li class="text-md">B.A. LLB from <strong class="text-yellow-300">Padalla Rami Reddy College</strong> (2012-2017).</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
         
-        <!-- 3. Expertise/Philosophy Section - Animated Focus --><section id="expertise" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl text-center">
+        <!-- 3. Expertise/Philosophy Section - Updated with Resume Data -->
+        <section id="expertise" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl text-center">
             <div class="scroll-reveal" data-scroll-delay="0.1">
                 <h3 class="text-3xl md:text-5xl font-extrabold text-white mb-4 text-scanner">
-                    Our <span class="dynamic-text-fill">Philosophy</span>
+                    Core <span class="dynamic-text-fill">Competencies</span> & Skills
                 </h3>
                 <p class="text-xl text-gray-400 mb-12">
                     Clarity, Integrity, and Unwavering Dedication to Client Success.
@@ -407,33 +468,127 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1: Detailed Analysis (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.2" data-tilt-max="10" data-hover-cursor>
-                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c.048 3.013 1.059 5.867 2.872 8.256A15.932 15.932 0 0012 22.091h.001c.361-.31.696-.642 1.009-.988a14.735 14.735 0 012.783-2.617 12.002 12.002 0 005.152-7.514A12.001 12.001 0 0021.666 5.984z"></path></svg>
-                    <h4 class="text-xl font-bold text-white mb-2">Detailed Analysis</h4>
-                    <p class="text-gray-400 text-sm">Every case is approached with forensic detail, ensuring no evidence or legal precedent is overlooked.</p>
-                </div>
-                
-                <!-- Feature 2: Strategic Advocacy (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.4" data-tilt-max="10" data-hover-cursor>
-                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 17h6a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h3"></path></svg>
-                    <h4 class="text-xl font-bold text-white mb-2">Strategic Advocacy</h4>
-                    <p class="text-gray-400 text-sm">Known for powerful and persuasive arguments, both in negotiations and before the bench.</p>
-                </div>
-                
-                <!-- Feature 3: Ethical Counsel (Tilt Effect) --><div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.6" data-tilt-max="10" data-hover-cursor>
+                <!-- Feature 1: AREAS OF EXPERTISE -->
+                <div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.2" data-tilt-max="10" data-hover-cursor>
                     <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.463 9.208 5 7.5 5A4.5 4.5 0 003 9.5a4.5 4.5 0 004.5 4.5c1.672 0 3.19-.487 4.5-1.334M12 6.253c1.168.868 2.792 1.334 4.5 1.334A4.5 4.5 0 0021 9.5a4.5 4.5 0 00-4.5-4.5c-1.672 0-3.19.487-4.5 1.334m0 13v-13"></path></svg>
-                    <h4 class="text-xl font-bold text-white mb-2">Ethical Counsel</h4>
-                    <p class="text-gray-400 text-sm">Maintaining the highest standards of professional ethics and clear, transparent communication.</p>
+                    <h4 class="text-xl font-bold text-white mb-2">Primary Legal Areas</h4>
+                    <ul class="text-gray-400 text-sm list-disc list-inside text-left mx-auto max-w-xs space-y-1">
+                        <li>Civil Law</li>
+                        <li>Family Law</li>
+                        <li>Criminal Law</li>
+                        <li>Setting Disputes (Arbitration)</li>
+                        <li>Document Filing</li>
+                        <li>Legal Writing</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: SKILLS (ADMINISTRATIVE & STRATEGIC) -->
+                <div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.4" data-tilt-max="10" data-hover-cursor>
+                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c.048 3.013 1.059 5.867 2.872 8.256A15.932 15.932 0 0012 22.091h.001c.361-.31.696-.642 1.009-.988a14.735 14.735 0 012.783-2.617 12.002 12.002 0 005.152-7.514A12.001 12.001 0 0021.666 5.984z"></path></svg>
+                    <h4 class="text-xl font-bold text-white mb-2">Personal & Core Strengths</h4>
+                    <ul class="text-gray-400 text-sm list-disc list-inside text-left mx-auto max-w-xs space-y-1">
+                        <li>Effective Negotiator & Public Speaker</li>
+                        <li>Case Analysis & Strategy</li>
+                        <li>Quick Learner & Able to Multi-task</li>
+                        <li>Passionate, Focused, & Forward Thinking</li>
+                        <li>Administrative Support</li>
+                        <li>Investigation Skills</li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: STRENGTHS & COMMITMENTS -->
+                <div class="glass-panel p-6 rounded-xl tilt-card scroll-reveal" data-scroll-delay="0.6" data-tilt-max="10" data-hover-cursor>
+                    <svg class="w-12 h-12 text-yellow-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 17h6a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h3"></path></svg>
+                    <h4 class="text-xl font-bold text-white mb-2">Unwavering Commitments</h4>
+                    <ul class="text-gray-400 text-sm list-disc list-inside text-left mx-auto max-w-xs space-y-1">
+                        <li>Commitment to work until accomplishment is achieved.</li>
+                        <li>Patient and optimistic under any career circumstances.</li>
+                        <li>Easily adaptable to any work environment.</li>
+                        <li>Willingness to learn and practice new things.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Location & Contact Section --><section id="location-contact" class="container mx-auto px-4 py-16 md:py-24 max-w-2xl">
+        <!-- 4. Work Experience / Key Results - NEW SECTION -->
+        <section id="work-experience" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
+            <div class="glass-panel p-8 md:p-12 rounded-xl scroll-reveal" data-scroll-delay="0.1">
+                <h3 class="text-3xl md:text-5xl font-extrabold text-yellow-400 mb-6 text-scanner text-center">
+                    Work <span class="dynamic-text-fill">Execution</span> & Key Result Areas
+                </h3>
+
+                <h4 class="text-xl font-bold text-white mb-2">Practising Lawyer:</h4>
+                <p class="text-gray-400 mb-6 border-b border-gray-700 pb-4">
+                    High Court of Telangana & Ranganreddy & Sangareddy District Courts.
+                </p>
+
+                <h4 class="text-xl font-bold text-white mb-4">Key Result Areas (KRAs):</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+                    <ul class="space-y-3 list-disc list-inside pl-4">
+                        <li>Interacting with clients, litigants & members of the bar & judiciary on a daily basis.</li>
+                        <li>Present evidence to defend clients or prosecute defendants in criminal and civil litigation.</li>
+                        <li>Select jurors, argue motions, meet with judges, and question witnesses during the course of trial.</li>
+                        <li>Meet with individuals involved in legal processes to provide information and clarify issues.</li>
+                        <li>Interpret laws, rulings, and regulations for individuals and businesses.</li>
+                    </ul>
+                    <ul class="space-y-3 list-disc list-inside pl-4">
+                        <li>Identify implications for cases from legal precedents or other legal information.</li>
+                        <li>Gather evidence to formulate defense or initiate legal actions (interviewing clients and witnesses).</li>
+                        <li>Arbitrate disputes between parties to resolve legal conflicts.</li>
+                        <li>Confer with colleagues & specialties in appropriate legal areas to establish and verify bases for proceedings.</li>
+                        <li>Represent clients in court or before government agencies.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Photo Gallery Section (NEW) --><section id="gallery" class="container mx-auto px-4 py-16 md:py-24 max-w-7xl text-center">
+            <div class="scroll-reveal" data-scroll-delay="0.1">
+                <h3 class="text-3xl md:text-5xl font-extrabold text-white mb-4 text-scanner">
+                    Professional <span class="dynamic-text-fill">Gallery</span>
+                </h3>
+                <p class="text-xl text-gray-400 mb-12">
+                    Moments that define commitment and practice.
+                </p>
+            </div>
+
+            <!-- Grid for Photos (responsive 2-3 columns) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                
+                <!-- Photo 1: Full Professional Attire (Used as primary on About page) -->
+                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.2">
+                    <img src="WhatsApp Image 2025-11-18 at 20.46.06.jpeg" alt="Advocate J. Bhanu Prasad" class="w-full h-full object-cover transform transition duration-500" />
+                    <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Official Portrait</span></div>
+                </div>
+
+                <!-- Photo 2: Handshake/Networking -->
+                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.3">
+                    <img src="WhatsApp Image 2025-11-18 at 20.47.07.jpeg" alt="Advocate with Colleague" class="w-full h-full object-cover transform transition duration-500" />
+                    <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Networking</span></div>
+                </div>
+
+                <!-- Photo 3: Seated in Court/Office -->
+                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.4">
+                    <img src="WhatsApp Image 2025-11-18 at 20.44.12.jpeg" alt="Advocate Seated in Waiting Area" class="w-full h-full object-cover transform transition duration-500" />
+                    <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">At the Court</span></div>
+                </div>
+
+                <!-- Photo 4: Namaste/Greeting -->
+                <div class="gallery-item aspect-square scroll-reveal" data-scroll-delay="0.5">
+                    <img src="WhatsApp Image 2025-11-18 at 20.52.20.jpeg" alt="Advocate J. Bhanu Prasad Greeting" class="w-full h-full object-cover transform transition duration-500" />
+                    <div class="gallery-overlay"><span class="text-white font-bold text-sm uppercase tracking-widest">Greeting</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Location & Contact Section -->
+        <section id="location-contact" class="container mx-auto px-4 py-16 md:py-24 max-w-2xl">
             <div class="glass-panel p-8 md:p-10 rounded-xl text-center scroll-reveal" data-scroll-delay="0.1">
                 <h3 class="text-3xl font-extrabold text-yellow-400 mb-4 text-scanner">
                     Initiate <span class="dynamic-text-fill">Discussion</span>
                 </h3>
                 <p class="text-gray-400 mb-8">
-                    To discuss your legal matter with Adv. Bhanu Prasad, please fill out the form or connect via WhatsApp.
+                    To discuss your legal matter with Adv. J. Bhanu Prasad, please fill out the form or connect via WhatsApp.
                 </p>
                 
                 <form class="space-y-4 text-left">
@@ -457,7 +612,7 @@
                         <button type="button" id="whatsapp-submit-btn" class="w-full creative-whatsapp-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] flex items-center justify-center space-x-3" data-hover-cursor>
                             <!-- WhatsApp Icon SVG -->
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
+                                <path d="M12.038 10.992c.004-.019.006-.039.011-.059.039-.187.059-.395.059-.607 0-.612-.132-1.206-.395-1.748-.262-.542-.644-1.007-1.127-1.391-.483-.383-1.042-.656-1.666-.819-.624-.163-1.282-.206-1.932-.132l-.001.005c-.015.006-.029.013-.044.019-.009.004-.017.009-.026.014-1.048.514-1.895 1.34-2.457 2.375-.562 1.034-.789 2.215-.658 3.398.128 1.183.563 2.296 1.258 3.268.696.972 1.585 1.77 2.637 2.316l.004.002.012.006.012.005c1.05.545 2.18.847 3.33.847 1.15 0 2.28-.302 3.33-.847.004-.002.009-.004.013-.006.004-.002.008-.004.012-.006 1.05-.545 1.939-1.344 2.635-2.316.695-.972 1.129-2.085 1.257-3.268.041-.334.053-.67.037-1.004-.015-.333-.06-.666-.137-1.002-.077-.336-.182-.672-.314-1.011-.132-.34-.294-.683-.485-1.036-.008-.016-.017-.032-.025-.048zM12.038 2.002c-5.521 0-10 4.479-10 10 0 1.742.453 3.424 1.314 4.887l-1.42 5.215 5.378-1.392c1.458.784 3.09 1.201 4.728 1.201 5.521 0 10-4.479 10-10s-4.479-10-10-10zm.01 1.5c4.71 0 8.52 3.81 8.52 8.52s-3.81 8.52-8.52 8.52c-1.55 0-3.04-.42-4.32-1.22l-.2-.12-2.12.55.57-2.06-.13-.21c-.81-1.27-1.23-2.76-1.23-4.32 0-4.71 3.81-8.52 8.52-8.52zM9.548 15.658l-.1-.06c-.19-.11-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26.06-.54.18-.74.29l-.1.06c-.2.12-.41.28-.59.48-.18.2-.32.44-.41.72-.09.28-.13.59-.13.91s.04.64.13.91c.09.28.23.52.41.72.18.2.39.36.59.48.2.12.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l-.1-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48zm4.499-2.012l.09.06c.19.11.47.23.74.29.26.06.52.08.78.08s-.54-.02.78-.08c-.26-.06.54-.18.74-.29l.09-.06c-.2-.12-.41-.28-.59-.48.18-.2.32-.44.41-.72.09-.28.13-.59.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72-.18-.2-.39-.36-.59-.48-.2-.12-.47-.23-.74-.29-.26-.06-.52-.08-.78-.08s-.54.02-.78.08c-.26-.06-.54.18-.74.29l-.09-.06c-.2-.12-.41-.28-.59-.48-.18-.2-.32-.44-.41-.72-.09-.28-.13-.59-.13-.91s-.04-.64-.13-.91c-.09-.28-.23-.52-.41-.72.18-.2.39-.36.59-.48z"/>
                             </svg>
                             <span>Connect and Send via WhatsApp</span>
                         </button>
@@ -465,7 +620,7 @@
                     </div>
 
                     <!-- Direction to Office Button (Updated Link - Placeholder for actual Maps link) --><div class="pt-6 scroll-reveal" data-scroll-delay="0.6">
-                        <a href="https://maps.app.goo.gl/6uGeq3pyAiM6rSxy9" target="_blank" class="w-full creative-white-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] inline-flex items-center justify-center space-x-2" data-hover-cursor>
+                        <a href="https://maps.app.goo.gl/YourOfficeLocation" target="_blank" class="w-full creative-white-button font-bold py-3 px-4 rounded-lg shadow-xl uppercase tracking-wider transform hover:scale-[1.02] inline-flex items-center justify-center space-x-2" data-hover-cursor>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             <span>Directions to Office</span>
                         </a>
@@ -477,7 +632,8 @@
     </main>
 
     <!-- Footer --><footer class="glass-panel mt-12 p-6 text-center text-gray-500 border-t border-gray-800">
-        <p>&copy; <span id="current-year"></span> Adv. Bhanu Prasad. All Rights Reserved. | Crafted by ANURAG WEB BUILDERS</p>
+        <!-- FIXED: Removed builder credit -->
+        <p>&copy; <span id="current-year"></span> Adv. J. Bhanu Prasad. All Rights Reserved. | Designed for Authority and Trust.</p>
     </footer>
 
     <!-- JavaScript for Animations and Cursor --><script>
@@ -493,7 +649,7 @@
             });
 
             // Handle hover states for interactive elements (links, buttons, inputs)
-            const interactiveElements = document.querySelectorAll('a, button, input, textarea, [data-hover-cursor]');
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, [data-hover-cursor], .gallery-item');
 
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('hovered-element'));
@@ -536,7 +692,7 @@
 
             // Title segments
             const titleSegments = [
-                { text: "BHANU PRASAD", classes: "gold-text" }
+                { text: "J. BHANU PRASAD", classes: "gold-text" }
             ];
 
             titleElement.innerHTML = '';
@@ -588,7 +744,12 @@
                 const moveX = -x * strength;
                 const moveY = -y * strength;
                 
-                wrapperTarget.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+                // Set CSS variables for the float animation to use the current mouse position
+                wrapperTarget.style.setProperty('--move-x', `${moveX}px`);
+                wrapperTarget.style.setProperty('--move-y', `${moveY}px`);
+
+                // No longer need to set transform here, the float animation handles the final transform
+                // We keep the transition for smoothness when parallax is active
                 wrapperTarget.style.transition = 'transform 0.1s ease-out';
             });
         }
@@ -670,7 +831,7 @@
             });
         }
 
-        // --- Canvas Background Animation ---
+        // --- Canvas Background Animation (Futuristic Gold Lines) ---
         function setupCanvasBackground() {
             const canvas = document.getElementById('background-canvas');
             if (!canvas) return;
@@ -797,6 +958,7 @@
 
                 // Construct the pre-filled WhatsApp message
                 const whatsappMessage = `*New Legal Query from Website*
+
 Name: ${name}
 Email: ${email}
 Query: ${message}`;
